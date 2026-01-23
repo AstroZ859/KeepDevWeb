@@ -81,7 +81,7 @@
 
             .logo {
                 order: 1;
-                margin-bottom: 5;
+                margin-bottom: 5px;
             }
 
             .menu {
@@ -138,7 +138,7 @@
         }
         
         window.addEventListener('DOMContentLoaded', () => {
-            setActiveLink('inicio');
+            setActiveLink('home');
         });
 
         window.addEventListener('scroll', () => {
@@ -175,7 +175,7 @@
                 setActiveLink(targetId);
                 // history.replaceState(null, '', window.location.pathname);
 
-                setTimeOut(() => {
+                setTimeout(() => {
                     isClickScrolling = false;
                 }, 600);
             });
