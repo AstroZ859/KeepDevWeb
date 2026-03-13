@@ -18,6 +18,9 @@
             margin: 0;
             padding: 20px;
 
+            transform: translateY(-200px);
+            opacity: 0;
+
             transition: transform 0.8s cubic-bezier(0.455,0.03,0.515,0.955),
                         opacity 0.8s cubic-bezier(0.455,0.03,0.515,0.955);
         }
@@ -135,9 +138,9 @@
     </section>
 
     <script id="web_main">
-    window.addEventListener('DOMContentLoaded', () => {
-        document.body.style.transform = "translateY(-100vh)";
-        document.body.style.opacity = "0";
+    window.addEventListener('load', () => {
+        document.body.style.transform = "translateY(0)";
+        document.body.style.opacity = "1";
     });
     </script>
     
