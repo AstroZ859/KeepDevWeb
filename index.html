@@ -17,6 +17,9 @@
             text-align: center;
             margin: 0;
             padding: 20px;
+
+            transition: transform 0.8s cubic-bezier(0.455,0.03,0.515,0.955),
+                        opacity 0.8s cubic-bezier(0.455,0.03,0.515,0.955);
         }
 
         h1 {
@@ -130,6 +133,13 @@
         <p>Founder Youtube: @Its_RobZ_Official (spanish / english)</p>
         <p>Discord: its_robz</p>
     </section>
+
+    <script id="web_main">
+    window.addEventListener('DOMContentLoaded', () => {
+        document.body.style.transform = "translateY(-100vh)";
+        document.body.style.opacity = "0";
+    });
+    </script>
     
     <script id="nav_observer">
     const menuLinks = document.querySelectorAll('.menu a');
