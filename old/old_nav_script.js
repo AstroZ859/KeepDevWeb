@@ -18,8 +18,6 @@
         });
 
         window.addEventListener('scroll', () => {
-            if (isClickScrolling) return;
-
             let current = '';
 
             sections.forEach(section => {
