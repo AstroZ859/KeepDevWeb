@@ -131,67 +131,45 @@
         <p>Discord: its_robz</p>
     </section>
     
-    <script>
-        const menuLinks = document.querySelectorAll('.menu a');
-        const sections = document.querySelectorAll('section');
+    <script id="nav_observer">
+    const menuLinks = document.querySelectorAll('.menu a');
+    const sections = document.querySelectorAll('section');
 
-        const offset = document.querySelector('.topbar').offsetHeight + 20; // section offset
-        let isClickScrolling = false;
-        
-        function setActiveLink(id) {
-            menuLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${id}`) {
-                    link.classList.add('active');
-                }
-            });
-        }
-        
-        window.addEventListener('DOMContentLoaded', () => {
-            setActiveLink('home');
+    function setActiveLink(id) {
+        menuLinks.forEach(link => {
+            link.classList.toggle(
+                'active',
+                link.getAttribute('href') === `#${id}`
+            );
         });
+    }
 
-        window.addEventListener('scroll', () => {
-            if (isClickScrolling) return;
-
-            let current = '';
-
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - offset;
-                if (window.scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            if (current) {
-                setActiveLink(current);
-                history.replaceState(null, '', `#${current}`);
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.id;
+                setActiveLink(id);
+                history.replaceState(null, '', `#${id}`);
             }
         });
-        
-        menuLinks.forEach(link => {
-            link.addEventListener('click', e => {
-                e.preventDefault(); // I'll make a custom scroll
-                
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
+    }, {
+        threshold: 0.6
+    });
 
-                isClickScrolling = true;
-                window.scrollTo({
-                    top: targetSection.offsetTop - offset,
-                    behavior: 'smooth'
-                });
+    sections.forEach(section => observer.observe(section));
 
-                setActiveLink(targetId);
-                // history.replaceState(null, '', window.location.pathname);
+    menuLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            e.preventDefault();
 
-                setTimeout(() => {
-                    isClickScrolling = false;
-                }, 600);
+            const targetId = link.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+
+            targetSection.scrollIntoView({
+                behavior: 'smooth'
             });
         });
-
-        console.log('loaded.');
+    });
     </script>
 
     <!-- FOOTER -->
