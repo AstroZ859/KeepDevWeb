@@ -18,7 +18,7 @@
             margin: 0;
             padding: 20px;
 
-            transform: translateY(215px);
+            transform: translateY(250px);
             opacity: 0;
 
             transition: transform 0.8s cubic-bezier(0.455,0.03,0.515,0.955),
@@ -139,8 +139,10 @@
 
     <script id="web_main">
     window.addEventListener('load', () => {
-        document.body.style.transform = "translateY(0)";
-        document.body.style.opacity = "1";
+        setTimeout(() -> {
+            document.body.style.transform = "translateY(0)";
+            document.body.style.opacity = "1";
+        }, 20);
     });
     </script>
     
